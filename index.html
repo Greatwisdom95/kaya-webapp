@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAYA Creative Studio</title>
+    <meta name="description" content="KAYA Creative Studio - Interface ultime pour gÃ©nÃ©ration d'images et vidÃ©os avec IA">
+    <meta name="keywords" content="KAYA, AI, images, videos, creative, studio">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{background:var(--tg-theme-bg-color,#1a1a1a);color:var(--tg-theme-text-color,#fff);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;min-height:100vh}.kaya-header{background:linear-gradient(135deg,#ff6b35,#f7931e);padding:20px;text-align:center;box-shadow:0 4px 20px rgba(255,107,53,.3)}.kaya-header h1{font-size:24px;font-weight:bold;margin-bottom:8px}.kaya-header p{font-size:14px;opacity:.9}.workflow-tabs{display:flex;background:rgba(255,255,255,.1);margin:20px;border-radius:12px;overflow:hidden}.tab{flex:1;padding:12px;text-align:center;cursor:pointer;transition:all .3s ease;border:none;background:transparent;color:var(--tg-theme-text-color,#fff)}.tab.active{background:linear-gradient(135deg,#ff6b35,#f7931e);font-weight:bold}.workflow-content{margin:20px}.partner-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-bottom:30px}.partner-card{background:rgba(255,255,255,.1);border-radius:12px;padding:15px;text-align:center;cursor:pointer;transition:all .3s ease;border:2px solid transparent}.partner-card:hover,.partner-card.selected{border-color:#ff6b35;background:rgba(255,107,53,.2);transform:translateY(-2px)}.partner-card img{width:60px;height:60px;border-radius:8px;margin-bottom:10px;object-fit:cover}.logo-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.logo-option{position:relative;border:2px solid transparent;border-radius:8px;overflow:hidden;cursor:pointer;transition:all .3s ease}.logo-option:hover,.logo-option.selected{border-color:#ff6b35;box-shadow:0 0 15px rgba(255,107,53,.5)}.logo-option img{width:100%;height:80px;object-fit:cover}.parameters-panel{background:rgba(255,255,255,.05);border-radius:12px;padding:20px;margin:20px 0}.param-group{margin-bottom:20px}.param-label{display:block;font-weight:bold;margin-bottom:10px;color:#ff6b35}.param-slider{width:100%;height:6px;background:rgba(255,255,255,.2);border-radius:3px;outline:none;-webkit-appearance:none}.param-slider::-webkit-slider-thumb{appearance:none;width:20px;height:20px;background:linear-gradient(135deg,#ff6b35,#f7931e);border-radius:50%;cursor:pointer}.style-buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.style-btn{padding:10px;border:2px solid rgba(255,255,255,.2);border-radius:8px;background:transparent;color:var(--tg-theme-text-color,#fff);cursor:pointer;transition:all .3s ease}.style-btn.active{border-color:#ff6b35;background:rgba(255,107,53,.2)}.preview-panel{background:rgba(0,0,0,.3);border-radius:12px;padding:20px;margin:20px 0;min-height:300px;position:relative;overflow:hidden}.preview-canvas{width:100%;height:250px;background:linear-gradient(45deg,#2a2a2a,#3a3a3a);border-radius:8px;position:relative;display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,255,255,.3)}.preview-placeholder{text-align:center;opacity:.6}.draggable-element{position:absolute;cursor:move;user-select:none;z-index:10}.logo-element{width:80px;height:80px;border:2px solid #ff6b35;border-radius:4px;background:rgba(255,107,53,.1)}.text-element{padding:8px 15px;background:rgba(255,107,53,.8);border-radius:4px;font-weight:bold;min-width:120px}.generate-section{margin-top:30px}.generate-btn{width:100%;padding:15px;background:linear-gradient(135deg,#ff6b35,#f7931e);border:none;border-radius:12px;color:white;font-size:16px;font-weight:bold;cursor:pointer;transition:all .3s ease}.generate-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,107,53,.4)}.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:20px}.result-card{background:rgba(255,255,255,.05);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .3s ease}.result-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.3)}.result-image{width:100%;height:120px;background:linear-gradient(45deg,#333,#555);display:flex;align-items:center;justify-content:center;color:#888}.result-actions{padding:10px;display:flex;gap:8px}.action-btn{flex:1;padding:6px;border:none;border-radius:6px;font-size:12px;cursor:pointer;transition:all .3s ease}.approve{background:#4CAF50;color:white}.modify{background:#FF9800;color:white}.reject{background:#f44336;color:white}.floating-controls{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:10px}.float-btn{width:50px;height:50px;border-radius:50%;border:none;background:linear-gradient(135deg,#ff6b35,#f7931e);color:white;font-size:20px;cursor:pointer;box-shadow:0 4px 15px rgba(255,107,53,.4);transition:all .3s ease}.float-btn:hover{transform:scale(1.1)}.hidden{display:none}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}.generating{animation:pulse 1.5s infinite}
+    </style>
+</head>
+<body>
+    <div class="kaya-header">
+        <h1>âœ§ KAYA Creative Studio</h1>
+        <p>Workflow ultime â€¢ Images â€¢ VidÃ©os â€¢ Magic</p>
+    </div>
+
+    <div class="workflow-tabs">
+        <button class="tab active" onclick="switchTab('images')">ðŸŽ¨ Images</button>
+        <button class="tab" onclick="switchTab('videos')">ðŸŽ¬ VidÃ©os</button>
+        <button class="tab" onclick="switchTab('results')">ðŸ“Š RÃ©sultats</button>
+    </div>
+
+    <div id="images-tab" class="workflow-content">
+        <div class="partner-grid">
+            <div class="partner-card" onclick="selectPartner('defacto')">
+                <div style="font-size:30px;margin-bottom:10px">âœ¨</div>
+                <h3>DeFacto</h3>
+                <p>Fashion â€¢ RDC</p>
+            </div>
+            <div class="partner-card" onclick="selectPartner('miroir')">
+                <div style="font-size:30px;margin-bottom:10px">ðŸ¬</div>
+                <h3>Miroir Mall</h3>
+                <p>Shopping â€¢ Luxe</p>
+            </div>
+            <div class="partner-card" onclick="selectPartner('yelela')">
+                <div style="font-size:30px;margin-bottom:10px">ðŸš›</div>
+                <h3>Yelela</h3>
+                <p>Livraison â€¢ Express</p>
+            </div>
+            <div class="partner-card" onclick="selectPartner('blueice')">
+                <div style="font-size:30px;margin-bottom:10px">ðŸ§Š</div>
+                <h3>Blue Ice</h3>
+                <p>Events â€¢ Premium</p>
+            </div>
+        </div>
+
+        <div class="logo-gallery">
+            <div class="logo-option" onclick="selectLogo('hd')">
+                <div style="background:linear-gradient(45deg,#333,#555);height:80px;display:flex;align-items:center;justify-content:center;color:#fff">HD</div>
+            </div>
+            <div class="logo-option" onclick="selectLogo('3d')">
+                <div style="background:linear-gradient(45deg,#444,#666);height:80px;display:flex;align-items:center;justify-content:center;color:#fff">3D</div>
+            </div>
+            <div class="logo-option" onclick="selectLogo('minimal')">
+                <div style="background:linear-gradient(45deg,#222,#444);height:80px;display:flex;align-items:center;justify-content:center;color:#fff">MIN</div>
+            </div>
+        </div>
+
+        <div class="parameters-panel">
+            <div class="param-group">
+                <label class="param-label">ðŸ“ Taille Logo: <span id="size-value">25%</span></label>
+                <input type="range" class="param-slider" min="10" max="50" value="25" oninput="updateSize(this.value)">
+            </div>
+            <div class="param-group">
+                <label class="param-label">ðŸ“ Position</label>
+                <div class="style-buttons">
+                    <button class="style-btn active" onclick="setPosition('corner')">Coin</button>
+                    <button class="style-btn" onclick="setPosition('center')">Centre</button>
+                </div>
+            </div>
+            <div class="param-group">
+                <label class="param-label">ðŸŽ¨ Style</label>
+                <div class="style-buttons">
+                    <button class="style-btn active" onclick="setStyle('cinema')">A24 CinÃ©ma</button>
+                    <button class="style-btn" onclick="setStyle('street')">Street</button>
+                    <button class="style-btn" onclick="setStyle('authentic')">RDC Authentique</button>
+                    <button class="style-btn" onclick="setStyle('dynamic')">Action</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <h3 style="margin-bottom:15px;color:#ff6b35">ðŸ“± Preview Temps RÃ©el</h3>
+            <div class="preview-canvas" id="preview-canvas">
+                <div class="preview-placeholder">
+                    <div style="font-size:40px;margin-bottom:10px">ðŸŽ¨</div>
+                    <p>Preview apparaÃ®tra ici</p>
+                </div>
+                <div class="draggable-element logo-element" id="logo-element" style="top:20px;right:20px;display:none">LOGO</div>
+                <div class="draggable-element text-element" id="text-element" style="bottom:20px;left:20px;display:none">TEXTE</div>
+            </div>
+        </div>
+
+        <div class="generate-section">
+            <button class="generate-btn" onclick="generateImage()">
+                <span id="generate-text">ðŸš€ GÃ‰NÃ‰RER IMAGE</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="videos-tab" class="workflow-content hidden">
+        <h2>ðŸŽ¬ GÃ©nÃ©ration VidÃ©os</h2>
+        <p>Interface vidÃ©o similaire avec storyboard...</p>
+    </div>
+
+    <div id="results-tab" class="workflow-content hidden">
+        <div class="results-grid">
+            <div class="result-card">
+                <div class="result-image">ðŸŽ¨ Image 1</div>
+                <div class="result-actions">
+                    <button class="action-btn approve">âœ…</button>
+                    <button class="action-btn modify">ðŸ”„</button>
+                    <button class="action-btn reject">âŒ</button>
+                </div>
+            </div>
+            <div class="result-card">
+                <div class="result-image">ðŸŽ¨ Image 2</div>
+                <div class="result-actions">
+                    <button class="action-btn approve">âœ…</button>
+                    <button class="action-btn modify">ðŸ”„</button>
+                    <button class="action-btn reject">âŒ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="floating-controls">
+        <button class="float-btn" onclick="saveProfile()" title="ðŸ’¾ Sauver">ðŸ’¾</button>
+        <button class="float-btn" onclick="resetAll()" title="ðŸ”„ Reset">ðŸ”„</button>
+        <button class="float-btn" onclick="sendToTelegram()" title="ðŸ“¤ Envoyer">ðŸ“¤</button>
+    </div>
+
+    <script>
+        // KAYA WebApp - Production Version v1.0
+        // Security: Input validation and XSS protection
+        if(window.Telegram&&window.Telegram.WebApp){
+            Telegram.WebApp.ready();
+            Telegram.WebApp.expand();
+        }
+        
+        let currentTab='images',selectedPartner='',selectedLogo='',currentParams={size:25,position:'corner',style:'cinema'};
+        
+        function switchTab(tab){
+            if(!['images','videos','results'].includes(tab))return;
+            document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+            document.querySelectorAll('.workflow-content').forEach(c=>c.classList.add('hidden'));
+            event.target.classList.add('active');
+            document.getElementById(tab+'-tab').classList.remove('hidden');
+            currentTab=tab;
+        }
+        
+        function selectPartner(partner){
+            if(!['defacto','miroir','yelela','blueice'].includes(partner))return;
+            document.querySelectorAll('.partner-card').forEach(c=>c.classList.remove('selected'));
+            event.target.classList.add('selected');
+            selectedPartner=partner;
+            updatePreview();
+        }
+        
+        function selectLogo(logo){
+            if(!['hd','3d','minimal'].includes(logo))return;
+            document.querySelectorAll('.logo-option').forEach(l=>l.classList.remove('selected'));
+            event.target.classList.add('selected');
+            selectedLogo=logo;
+            document.getElementById('logo-element').style.display='block';
+            updatePreview();
+        }
+        
+        function updateSize(value){
+            value=Math.max(10,Math.min(50,parseInt(value)));
+            document.getElementById('size-value').textContent=value+'%';
+            currentParams.size=value;
+            const logoEl=document.getElementById('logo-element');
+            logoEl.style.width=(40+value/2)+'px';
+            logoEl.style.height=(40+value/2)+'px';
+        }
+        
+        function setPosition(pos){
+            if(!['corner','center'].includes(pos))return;
+            document.querySelectorAll('.style-btn').forEach(b=>b.classList.remove('active'));
+            event.target.classList.add('active');
+            currentParams.position=pos;
+            const logoEl=document.getElementById('logo-element');
+            if(pos==='center'){
+                logoEl.style.top='50%';logoEl.style.left='50%';
+                logoEl.style.transform='translate(-50%, -50%)';
+                logoEl.style.right='auto';logoEl.style.bottom='auto';
+            }else{
+                logoEl.style.top='20px';logoEl.style.right='20px';
+                logoEl.style.left='auto';logoEl.style.bottom='auto';
+                logoEl.style.transform='none';
+            }
+        }
+        
+        function setStyle(style){
+            if(!['cinema','street','authentic','dynamic'].includes(style))return;
+            document.querySelectorAll('.style-btn').forEach(b=>b.classList.remove('active'));
+            event.target.classList.add('active');
+            currentParams.style=style;
+            updatePreview();
+        }
+        
+        function updatePreview(){
+            const canvas=document.getElementById('preview-canvas');
+            const placeholder=canvas.querySelector('.preview-placeholder');
+            if(selectedPartner&&selectedLogo){
+                placeholder.style.display='none';
+                document.getElementById('text-element').style.display='block';
+                const gradients={
+                    defacto:'linear-gradient(45deg,#8B4513,#D2691E)',
+                    miroir:'linear-gradient(45deg,#FFD700,#FFA500)',
+                    yelela:'linear-gradient(45deg,#FF4500,#FF6347)',
+                    blueice:'linear-gradient(45deg,#4169E1,#87CEEB)'
+                };
+                canvas.style.background=gradients[selectedPartner]||'linear-gradient(45deg,#2a2a2a,#3a3a3a)';
+            }
+        }
+        
+        function generateImage(){
+            const btn=document.querySelector('.generate-btn');
+            const text=document.getElementById('generate-text');
+            btn.classList.add('generating');
+            text.textContent='âš¡ GÃ‰NÃ‰RATION EN COURS...';
+            btn.disabled=true;
+            
+            // Send to OpenClaw handler
+            const data={
+                action:'generate',
+                partner:selectedPartner,
+                logo:selectedLogo,
+                params:currentParams,
+                timestamp:Date.now(),
+                user_id:window.Telegram?.WebApp?.initDataUnsafe?.user?.id||'anonymous'
+            };
+            
+            // Webhook to OpenClaw
+            fetch('/api/kaya/generate',{
+                method:'POST',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify(data)
+            }).then(response=>response.json())
+            .then(result=>{
+                btn.classList.remove('generating');
+                text.textContent=result.success?'âœ… IMAGE GÃ‰NÃ‰RÃ‰E':'âŒ ERREUR';
+                btn.disabled=false;
+                if(result.success)addResult(result.data);
+                setTimeout(()=>text.textContent='ðŸš€ GÃ‰NÃ‰RER IMAGE',2000);
+            }).catch(err=>{
+                btn.classList.remove('generating');
+                text.textContent='âŒ ERREUR RÃ‰SEAU';
+                btn.disabled=false;
+                setTimeout(()=>text.textContent='ðŸš€ GÃ‰NÃ‰RER IMAGE',2000);
+            });
+            
+            // Telegram WebApp fallback
+            if(window.Telegram&&window.Telegram.WebApp){
+                Telegram.WebApp.sendData(JSON.stringify(data));
+            }
+        }
+        
+        function addResult(data){
+            switchTab('results');
+        }
+        
+        function saveProfile(){
+            const profile={partner:selectedPartner,logo:selectedLogo,params:currentParams};
+            if(window.Telegram&&window.Telegram.WebApp){
+                Telegram.WebApp.sendData(JSON.stringify({action:'save_profile',data:profile}));
+            }
+        }
+        
+        function sendToTelegram(){
+            const data={action:'generate',partner:selectedPartner,logo:selectedLogo,params:currentParams};
+            if(window.Telegram&&window.Telegram.WebApp){
+                Telegram.WebApp.sendData(JSON.stringify(data));
+            }
+        }
+        
+        function resetAll(){
+            selectedPartner='';selectedLogo='';
+            currentParams={size:25,position:'corner',style:'cinema'};
+            document.querySelectorAll('.selected').forEach(el=>el.classList.remove('selected'));
+            document.getElementById('logo-element').style.display='none';
+            document.getElementById('text-element').style.display='none';
+            document.getElementById('preview-canvas').style.background='linear-gradient(45deg,#2a2a2a,#3a3a3a)';
+            document.querySelector('.preview-placeholder').style.display='block';
+        }
+        
+        // Drag & Drop
+        let isDragging=false,currentDragElement=null;
+        function makeDraggable(element){
+            element.addEventListener('mousedown',startDrag);
+            element.addEventListener('touchstart',startDrag);
+        }
+        function startDrag(e){
+            isDragging=true;currentDragElement=e.target;e.preventDefault();
+        }
+        document.addEventListener('mousemove',drag);
+        document.addEventListener('touchmove',drag);
+        document.addEventListener('mouseup',stopDrag);
+        document.addEventListener('touchend',stopDrag);
+        function drag(e){
+            if(!isDragging||!currentDragElement)return;
+            const canvas=document.getElementById('preview-canvas');
+            const rect=canvas.getBoundingClientRect();
+            const clientX=e.clientX||e.touches[0].clientX;
+            const clientY=e.clientY||e.touches[0].clientY;
+            const x=clientX-rect.left-currentDragElement.offsetWidth/2;
+            const y=clientY-rect.top-currentDragElement.offsetHeight/2;
+            currentDragElement.style.left=Math.max(0,Math.min(x,rect.width-currentDragElement.offsetWidth))+'px';
+            currentDragElement.style.top=Math.max(0,Math.min(y,rect.height-currentDragElement.offsetHeight))+'px';
+            currentDragElement.style.right='auto';
+            currentDragElement.style.bottom='auto';
+            currentDragElement.style.transform='none';
+        }
+        function stopDrag(){
+            isDragging=false;currentDragElement=null;
+        }
+        
+        // Initialize
+        makeDraggable(document.getElementById('logo-element'));
+        makeDraggable(document.getElementById('text-element'));
+        
+        // Telegram theme
+        if(window.Telegram&&window.Telegram.WebApp){
+            document.documentElement.style.setProperty('--tg-theme-bg-color',Telegram.WebApp.themeParams.bg_color||'#1a1a1a');
+            document.documentElement.style.setProperty('--tg-theme-text-color',Telegram.WebApp.themeParams.text_color||'#ffffff');
+        }
+    </script>
+</body>
+</html>
